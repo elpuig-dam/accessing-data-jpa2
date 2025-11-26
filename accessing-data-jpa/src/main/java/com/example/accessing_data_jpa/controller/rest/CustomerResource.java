@@ -29,6 +29,11 @@ public class CustomerResource {
         return service.getCustomer(id);
     }
 
+    @PostMapping
+    public CustomerDTO createCustomer(@RequestBody CustomerDTO customerDTO) {
+        return service.addCustomer(customerDTO);
+    }
+
 
 
 

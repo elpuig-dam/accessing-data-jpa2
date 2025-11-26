@@ -43,6 +43,11 @@ public class CustomerService {
         return customerMapper.toDTO(customer);
     }
 
+    public CustomerDTO addCustomer(CustomerDTO customerDTO) {
+        Customer c = customerRepository.save(customerMapper.toEntity(customerDTO));
+        return customerMapper.toDTO(c);
+    }
+
     // --- Mètodes de conversió ---
 
     private CustomerDTO convertToCustomerDTO(Customer customer) {
