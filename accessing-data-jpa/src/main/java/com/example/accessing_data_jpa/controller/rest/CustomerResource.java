@@ -1,5 +1,6 @@
 package com.example.accessing_data_jpa.controller.rest;
 
+import com.example.accessing_data_jpa.dto.CustomerDTO;
 import com.example.accessing_data_jpa.model.Customer;
 import com.example.accessing_data_jpa.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,14 @@ public class CustomerResource {
     private CustomerService service;
 
     @GetMapping
-    public List<Customer> getCustomers(@RequestParam(name = "lastName", required = false) String lastName) {
+    public List<CustomerDTO> getCustomers(@RequestParam(name = "lastName", required = false) String lastName) {
 
         if(lastName == null) return service.getAllCustomers();
         else return service.getCustomersByLastName(lastName);
     }
+
+
+
 
 
 

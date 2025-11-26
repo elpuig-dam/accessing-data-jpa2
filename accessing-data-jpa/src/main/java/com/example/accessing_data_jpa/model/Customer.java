@@ -40,7 +40,7 @@ public class Customer {
             orphanRemoval = true, // Si trec una incidència de la llista, s'esborra
             fetch = FetchType.LAZY // No carreguis les incidències fins que no les demani
     )
-    private List<Incident> incidencies = new ArrayList<>();
+    private List<Incident> incidencies;
 
     // És important tenir mètodes per mantenir la consistència
     public void addIncidencia(Incident incidencia) {
