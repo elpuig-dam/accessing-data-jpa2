@@ -2,12 +2,14 @@ package com.example.accessing_data_jpa.service;
 
 import com.example.accessing_data_jpa.dto.CustomerDTO;
 import com.example.accessing_data_jpa.dto.IncidentDTO;
+import com.example.accessing_data_jpa.mapper.CustomerMapper;
 import com.example.accessing_data_jpa.model.Customer;
 import com.example.accessing_data_jpa.model.Incident;
 import com.example.accessing_data_jpa.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,16 +18,29 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
 
     @Autowired
+    private CustomerMapper customerMapper;
+
+    @Autowired
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
     public List<CustomerDTO> getAllCustomers() {
-        return (List<Customer>)customerRepository.findAll();
+        List<Customer> customers = new ArrayList<>();
+        customerRepository.findAll().forEach(customers::add);
+        return customerMapper.toDTO(customers);
+        //return customers.stream().map(this::convertToCustomerDTO).toList();
+        //return (List<Customer>)customerRepository.findAll();
     }
 
     public List<CustomerDTO> getCustomersByLastName(String lastName) {
-        return customerRepository.findByLastName(lastName);
+        return customerMapper.toDTO(customerRepository.findByLastName(lastName));
+        //return customerRepository.findByLastName(lastName).stream().map(this::convertToCustomerDTO).toList();
+    }
+
+    public CustomerDTO getCustomer(Long id) {
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new RuntimeException("Customer with id " + id + " not found"));
+        return customerMapper.toDTO(customer);
     }
 
     // --- Mètodes de conversió ---

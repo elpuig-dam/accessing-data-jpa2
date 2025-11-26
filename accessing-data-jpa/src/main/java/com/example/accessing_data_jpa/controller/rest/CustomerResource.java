@@ -4,10 +4,7 @@ import com.example.accessing_data_jpa.dto.CustomerDTO;
 import com.example.accessing_data_jpa.model.Customer;
 import com.example.accessing_data_jpa.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +23,14 @@ public class CustomerResource {
         if(lastName == null) return service.getAllCustomers();
         else return service.getCustomersByLastName(lastName);
     }
+
+    @GetMapping("/{id}")
+    public CustomerDTO getCustomer(@PathVariable("id") Long id) {
+        return service.getCustomer(id);
+    }
+
+
+
 
 
 
