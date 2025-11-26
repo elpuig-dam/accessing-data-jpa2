@@ -1,0 +1,17 @@
+### GET
+GET http://localhost:8080/customers
+
+### GET
+GET http://localhost:8080/customers/1
+
+
+### POST
+POST http://localhost:8080/customers
+Content-Type: application/json
+
+{
+  "firstName": "Jonny",
+  "lastName": "Cash",
+  "email": "jc@email.com"
+}
+
