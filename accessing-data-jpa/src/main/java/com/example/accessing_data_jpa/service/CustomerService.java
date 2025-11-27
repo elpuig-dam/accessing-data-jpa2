@@ -48,6 +48,31 @@ public class CustomerService {
         return customerMapper.toDTO(c);
     }
 
+    public CustomerDTO updateCustomer(Long id, CustomerDTO customerDTO) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Customer not found with id " + id));
+
+        // Una possible estratègia. Els camps dels que no fem set quedaran igual que a
+        // l'original.
+        // També podriem verificar si el dto té totes les dades i si n'hi ha de nulls
+        // mantenir la entity
+        customer.setEmail(customerDTO.email());
+        //customer.setIncidencies(customerDTO.???); no podem de moment modificat incidències
+        customer.setFirstName(customerDTO.firstName());
+        customer.setLastName(customerDTO.lastName());
+
+        Customer saved = customerRepository.save(customer);
+
+        return customerMapper.toDTO(saved);
+    }
+
+    public void deleteCustomer(Long id) {
+        Customer c = customerRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("Customer not found with id " + id)
+        );
+        customerRepository.deleteById(id);
+    }
+
     // --- Mètodes de conversió ---
 
     private CustomerDTO convertToCustomerDTO(Customer customer) {

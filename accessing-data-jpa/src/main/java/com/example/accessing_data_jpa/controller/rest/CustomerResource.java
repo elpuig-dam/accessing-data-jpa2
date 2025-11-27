@@ -4,6 +4,7 @@ import com.example.accessing_data_jpa.dto.CustomerDTO;
 import com.example.accessing_data_jpa.model.Customer;
 import com.example.accessing_data_jpa.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,18 @@ public class CustomerResource {
     @PostMapping
     public CustomerDTO createCustomer(@RequestBody CustomerDTO customerDTO) {
         return service.addCustomer(customerDTO);
+    }
+
+    @PutMapping("/{id}")
+    public CustomerDTO updateCustomer(@PathVariable("id") Long id,
+                                                      @RequestBody CustomerDTO customerDTO) {
+        CustomerDTO dto = service.updateCustomer(id, customerDTO);
+        return dto;
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteCustomer(@PathVariable("id") Long id) {
+        service.deleteCustomer(id);
     }
 
 

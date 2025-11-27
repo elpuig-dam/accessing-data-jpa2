@@ -72,4 +72,16 @@ public class Customer {
     public List<Incident> getIncidencies() {
         return incidencies;
     }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

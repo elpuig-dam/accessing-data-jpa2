@@ -1,7 +1,7 @@
 ### GET
 GET http://localhost:8080/customers
 
-### GET
+### GET by Id
 GET http://localhost:8080/customers/1
 
 
@@ -15,3 +15,16 @@ Content-Type: application/json
   "email": "jc@email.com"
 }
 
+### PUT
+
+PUT http://localhost:8080/customers/1
+Content-Type: application/json
+
+{
+    "firstName": "Jack",
+    "lastName": "Bauer",
+    "email": "jack.bauer@example.com"
+}
+
+### DELETE By Id
+DELETE http://localhost:8080/customers/1
