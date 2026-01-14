@@ -15,7 +15,8 @@ public class Incident {
     @Column(nullable = false)
     private String titol;
 
-    @Lob // Per a textos llargs (es traduirà a CLOB o TEXT)
+    //@Lob // Per a textos llargs (es traduirà a CLOB o TEXT) per H2
+    @Column(columnDefinition = "TEXT") //per postgresql
     private String descripcio;
 
     private LocalDateTime dataObertura = LocalDateTime.now();
