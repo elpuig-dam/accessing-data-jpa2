@@ -1,0 +1,18 @@
+spring:
+  sql:
+    init:
+      mode: never
+      encoding: UTF-8
+
+  datasource:
+    url: jdbc:postgresql://10.207.1.48:5432/customersdb
+    username: jordi
+    password: jordi
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    #database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+    defer-datasource-initialization: true

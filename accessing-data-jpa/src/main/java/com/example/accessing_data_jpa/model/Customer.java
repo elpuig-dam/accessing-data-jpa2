@@ -1,7 +1,7 @@
 package com.example.accessing_data_jpa.model;
+
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,7 +9,7 @@ import java.util.List;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, length = 100, name = "first_name")
